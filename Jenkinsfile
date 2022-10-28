@@ -19,5 +19,14 @@ pipeline {
 				       }    
 			    } 
         } 
+	  stage('Docker Build and Push') {
+                       steps {
+                               withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
+         			  sh 'printenv'
+        			  sh 'docker build -t louay123/devsecops .'
+	 			  sh 'docker tag louay123/devsecops louay123/devsecops:latest'
+         			  sh 'docker push louay123/devsecops:latest'
+         			}
+     			  }
     }
 }
