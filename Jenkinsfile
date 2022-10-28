@@ -8,7 +8,7 @@ pipeline {
               archive 'target/*.jar' //so that they can be downloaded later
             }
         }  
-              stage('Unit test') {
+              stage('Unit test - Junit and jacoco') {
             steps {
               sh "mvn test"
             }
