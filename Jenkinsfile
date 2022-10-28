@@ -28,5 +28,6 @@ pipeline {
          			  sh 'docker push louay123/devsecops:latest'
          			}
      			  }
+	  }
     }
 }
