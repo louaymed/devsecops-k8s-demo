@@ -29,13 +29,5 @@ pipeline {
          			}
      			  }
 	  }
-	  	  stage('kubernetes deployment - dev') {
-                       steps {
-                               withKubeConfig([credentialsId: "kubeconfig"]) {
-				  sh "sed -i 's#replace#louay123/devsecops:latest' k8s_deployment_service.yaml"
-         			  sh 'kubectl apply -f k8s_deployment_service.yaml'
-         			}
-     			  }
-	  }
     }
 }
