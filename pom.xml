@@ -65,39 +65,26 @@
         </execution>
     </executions>
 </plugin>
-			<plugin>
-		<groupId>org.pitest</groupId>
-		<artifactId>pitest-maven</artifactId>
-		<version>1.5.0</version>
-
-		<executions>
-			<execution>
-				<id>pit-report</id>
-				<!-- optional, this example attached the goal into mvn test phase -->
-				<phase>test</phase>
-				<goals>
-					<goal>mutationCoverage</goal>
-				</goals>
-			</execution>
-		</executions>
-
-		<!-- https://github.com/hcoles/pitest/issues/284 -->
-		<!-- Need this to support JUnit 5 -->
-		<dependencies>
-			<dependency>
-				<groupId>org.pitest</groupId>
-				<artifactId>pitest-junit5-plugin</artifactId>
-				<version>0.12</version>
-			</dependency>
-		</dependencies>
-		<configuration>
-		<mutationThreshold>70</mutationThreshold>
-		<outputFormats>
-			<outputFormat>XML</outputFormat>
-			<outputFormat>HTML</outputFormat>
-		</outputFormats>
-		</configuration>
-	</plugin>
+			   <!--                   PITest Mutation Plugin                   -->
+			   <plugin>
+			    <groupId>org.pitest</groupId>
+			    <artifactId>pitest-maven</artifactId>
+			    <version>1.5.0</version>
+			    <dependencies>
+			     <dependency>
+			      <groupId>org.pitest</groupId>
+			      <artifactId>pitest-junit5-plugin</artifactId>
+			      <version>0.12</version>
+			     </dependency>
+			    </dependencies>
+			    <configuration>
+			     <mutationThreshold>70</mutationThreshold>
+			     <outputFormats>
+			             <outputFormat>XML</outputFormat>
+			             <outputFormat>HTML</outputFormat>
+			        </outputFormats>
+			    </configuration>
+			   </plugin>
 
 		</plugins>
 	</build>
