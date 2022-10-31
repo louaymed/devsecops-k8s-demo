@@ -91,12 +91,11 @@
 			</dependency>
 		</dependencies>
 		<configuration>
-			<targetClasses>
-				<param>com.mkyong.examples.*</param>
-			</targetClasses>
-			<targetTests>
-				<param>com.mkyong.examples.*</param>
-			</targetTests>
+		<mutationThreshold>70</mutationThreshold>
+		<outputFormats>
+			<outputFormat>XML</outputFormat>
+			<outputFormat>HTML</outputFormat>
+		</outputFormats>
 		</configuration>
 	</plugin>
 
