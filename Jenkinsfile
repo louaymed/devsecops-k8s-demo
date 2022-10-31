@@ -21,7 +21,7 @@ pipeline {
         } 
 	  stage('Mutation Tests - PIT') {
             steps {
-              sh "mvn org.pitest:pitest-maven:mutaionCovearge"
+              sh "mvn org.pitest:pitest-maven:mutationCovearge"
             }
                 post {
 				always {
