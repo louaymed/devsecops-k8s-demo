@@ -19,13 +19,22 @@ pipeline {
 				       }    
 			    } 
         } 
+	  stage('Mutation Tests - PIT') {
+            steps {
+              sh "mvn org.pitest:pitest-maven:mutaionCovearge"
+            }
+                post {
+				always {
+          pitmutaion.mutationStatsfile:.'**target/pit-reports/**/mutations.xml'
+				       }    
+			    } 
+        } 
 	  stage('Docker Build and Push') {
                        steps {
                                withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
          			  sh 'printenv'
-        			  sh 'docker build -t louay123/devsecops .'
-	 			  sh 'docker tag louay123/devsecops louay123/devsecops:latest'
-         			  sh 'docker push louay123/devsecops:latest'
+        			  sh 'docker build -t louay123/devsecops:""$GIT_COMMIT"" .'
+         			  sh 'docker push louay123/devsecops:""$GIT_COMMIT""'
          			}
      			  }
 	  }
