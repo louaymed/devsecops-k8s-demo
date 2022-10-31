@@ -31,16 +31,9 @@ pipeline {
         } 
 	 stage('SonarQube - SAST') {
        steps {
-        
           sh "mvn  sonar:sonar -Dsonar.projectKey=devsecops  -Dsonar.host.url=http://20.38.35.181:9000  -Dsonar.login=sqp_ea8d735b3cf2e9cb0c046e8bbb9f829a8c680860"
-       
-        timeout(time: 2, unit: 'MINUTES') {
-          script {
-            waitForQualityGate abortPipeline: true
-          }
+	}
         }
-      }
-    }
 	  stage('Docker Build and Push') {
                        steps {
                                withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
