@@ -29,6 +29,21 @@ pipeline {
 				       }    
 			    } 
         } 
+	 stage('SonarQube - SAST') {
+       steps {
+        withSonarQubeEnv('SonarQube') {
+          sh "mvn clean verify sonar:sonar \
+  		-Dsonar.projectKey=devsecops \
+  		-Dsonar.host.url=http://20.38.35.181:9000 \
+ 	        -Dsonar.login=sqp_5e52e80583dc047fbaf2e9a4709964755d417ad6"
+       }
+        timeout(time: 2, unit: 'MINUTES') {
+          script {
+            waitForQualityGate abortPipeline: true
+          }
+        }
+      }
+    }
 	  stage('Docker Build and Push') {
                        steps {
                                withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
